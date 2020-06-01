@@ -1,41 +1,36 @@
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
-    string s;
-    cin>>s;
-    int l=s.size();
-    int i,zeros,ones,c0,c1;
-    zeros=0;
-    ones=0;
-    c0=0;
-    c1=0;
-    for(i=0;i<l-1;i++){
 
-        if( s.at(i)=='0' &&s.at(i+1)=='0'){
-            zeros++;
-            if(zeros==6){
-                c0++;
-                break;
-            }
-        }
-        else if( s.at(i)=='1' &&s.at(i+1)=='1'){
+    int n,i;
+    map<string,int>mp;
+    map<string,int>::iterator itr;
+    string s,s1;
+    cin>>n;
+    for(i=1;i<=n;i++){
+        cin>>s;
+        s1=s;
+        mp[s1]++;
+    }
+    int m=-1;
+    for(itr=mp.begin();itr!=mp.end();itr++){
 
-            ones++;
-            if(ones==6){
-                c1++;
-                break;
-            }
+        if(itr->second>=m){
+            m=itr->second;
         }
-        else if( (s.at(i)=='0' &&s.at(i+1)=='1') || (s.at(i)=='1' &&s.at(i+1)=='0')){
-            zeros=0;
-            ones=0;
+
+    }
+    for(itr=mp.begin();itr!=mp.end();itr++){
+
+        if(itr->second==m){
+            cout<<itr->first<<endl;
+            break;
         }
+
     }
-    if(c0>0 || c1>0){
-        cout<<"YES"<<endl;
-    }
-    else{
-        cout<<"NO"<<endl;
-    }
+
+
+
+
 
 }
